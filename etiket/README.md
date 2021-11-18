@@ -10,7 +10,7 @@
 ## About Ticketing App
 To start application:
 - run composer install use CLI with path directory application
-- rename .env.example .env <br>
+- cp .env.example .env <br>
 change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration.
 By default, the username is root and you can leave the password field empty for database name is etiket.
 - create database with name etiket if you use database name is etiket
