@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use App\Exceptions\InvalidOrderException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,11 +38,11 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+           
         });
 
         $this->renderable(function (NotFoundHttpException $e, $request) {
-            if ($request->is('api/*') && $request->header("content-type") == "application/json") {
+            if (($request->header("content-type") == "application/json")) {
                 return response()->json([
                     "code" => "404",
                     'status' => 'Record not found.'
@@ -50,7 +51,7 @@ class Handler extends ExceptionHandler
         });
         
         $this->renderable(function (MethodNotAllowedHttpException $e, $request) {
-            if ($request->is('api/*') && $request->header("content-type") == "application/json") {
+            if (($request->header("content-type") == "application/json")) {
                 return response()->json([
                     "code" => "405",
                     'status' => 'Method not allowed.'
