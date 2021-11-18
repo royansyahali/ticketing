@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tiket;
+use App\Models\Ticket;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
-class TiketController extends Controller
+class TicketController extends Controller
 {
 
     public function get(Request $request, $limit = 10){
@@ -15,11 +15,11 @@ class TiketController extends Controller
         $headerKey = $request->header("X-API-KEY");
 
         if (($headerKey == "R@h4s14") && ($headerContent == "application/json")) {
-            $tiket = Tiket::limit($limit)->get();
+            $ticket = Ticket::limit($limit)->get();
             $arr = [
                 "code" => "202",
                 "status" => "Accepted",
-                "data" => ["tiket" => $tiket]
+                "data" => ["tickets" => $ticket]
             ];
             return response()->json($arr,202);
         }
@@ -35,9 +35,9 @@ class TiketController extends Controller
         $headerKey = $request->header("X-API-KEY");
 
         if (($headerKey == "R@h4s14") && ($headerContent == "application/json")) {
-            $request["priority"] = ucfirst($request["priority"]);
+            $request["priority"] = ucfirst(strtolower(($request["priority"])));
             $validator = Validator::make($request->all(), [
-                'subject' => 'required|max:100',
+                'subject' => 'required|max:50',
                 'message' => 'required',
                 "priority" => "required|in:Low,High,Medium"
             ]);
@@ -54,14 +54,14 @@ class TiketController extends Controller
             }
             $validated = $validator->validated();
             $validated["id"] = Str::uuid()->toString();
-            $validated["tiket_number"] = time().Str::random(5);
+            $validated["ticket_number"] = time().Str::random(5);
             $validated["status"] = "Open";
             
-            $tiket =  Tiket::create($validated);
+            $ticket =  Ticket::create($validated);
             $arr = [
                 "code" => "202",
                 "status" => "Accepted",
-                "data" => ["tiket" => $validated, "message" => "Tiket has been created"]
+                "data" => ["ticket" => $validated, "message" => "Ticket has been created"]
             ];
             return response()->json($arr,202);
         }
@@ -79,7 +79,7 @@ class TiketController extends Controller
         if (($headerKey == "R@h4s14") && ($headerContent == "application/json")) {
             $validator = Validator::make($request->all(), [
                 'message' => 'required',
-                "tiket_number" => "required|min:15|max:15"
+                "ticket_number" => "required|min:15|max:15"
             ]);
             if ($validator->fails()) {
                 
@@ -92,23 +92,24 @@ class TiketController extends Controller
             }
             $validated = $validator->validated();
 
-            $tiket = Tiket::where('tiket_number',"=", $validated["tiket_number"])->first();
+            $ticket = Ticket::where('ticket_number',"=", $validated["ticket_number"])->first();
             
-            if ($tiket == null) {
+            if ($ticket == null) {
                 $arr = [
                     "code" => "404",
                     "status" => "Bad Request",
-                    "data" => ["message" => "Tiket not found in list"]
+                    "data" => ["message" => "Ticket not found in list"]
                 ];
                 return response()->json($arr,404);
             }
-            $tiket["status"] = "Answered";
-            $tiket->save();
+            $ticket["status"] = "Answered";
+            $ticket["message"] = $validated["message"];
+            $ticket->save();
             
             $arr = [
                 "code" => "202",
                 "status" => "Accepted",
-                "data" => ["tiket" => $tiket, "message" => "Status tiket change to answered"]
+                "data" => ["ticket" => $ticket, "message" => "Status ticket change to answered"]
             ];
             return response()->json($arr,202);
         }
@@ -125,7 +126,7 @@ class TiketController extends Controller
 
         if (($headerKey == "R@h4s14") && ($headerContent == "application/json")) {
             $validator = Validator::make($request->all(), [
-                "tiket_number" => "required|min:15|max:15"
+                "ticket_number" => "required|min:15|max:15"
             ]);
             if ($validator->fails()) {
                 $arr = [
@@ -137,23 +138,23 @@ class TiketController extends Controller
             }
             $validated = $validator->validated();
 
-            $tiket = Tiket::where('tiket_number',"=", $validated["tiket_number"])->first();
+            $ticket = Ticket::where('ticket_number',"=", $validated["ticket_number"])->first();
             
-            if ($tiket == null) {
+            if ($ticket == null) {
                 $arr = [
                     "code" => "404",
                     "status" => "Bad Request",
-                    "data" => ["message" => "Tiket not found in list"]
+                    "data" => ["message" => "Ticket not found in list"]
                 ];
                 return response()->json($arr,404);
             }
-            $tiket["status"] = "Closed";
-            $tiket->save();
+            $ticket["status"] = "Closed";
+            $ticket->save();
 
             $arr = [
                 "code" => "202",
                 "status" => "Accepted",
-                "data" => ["tiket" => $tiket, "message" => "Status tiket change to closed"]
+                "data" => ["ticket" => $ticket, "message" => "Status ticket change to closed"]
             ];
             return response()->json($arr,202);
         }
@@ -182,22 +183,22 @@ class TiketController extends Controller
             }
             $validated = $validator->validated();
 
-            $tiket = Tiket::find($validated["id"]);
+            $ticket = Ticket::find($validated["id"]);
             
-            if ($tiket == null) {
+            if ($ticket == null) {
                 $arr = [
                     "code" => "404",
                     "status" => "Bad Request",
-                    "data" => ["message" =>"Tiket not found in list"]
+                    "data" => ["message" =>"Ticket not found in list"]
                 ];
                 return response()->json($arr,404);
             }
-            $tiket->delete();
+            $ticket->delete();
 
             $arr = [
                 "code" => "202",
                 "status" => "Accepted",
-                "data" => ["message" => "Tiket has been removed"]
+                "data" => ["message" => "Ticket has been removed"]
             ];
             return response()->json($arr,202);
         }

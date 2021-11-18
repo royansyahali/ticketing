@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TiketController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route etiket
 
-Route::get("/tiket/{limit?}", [TiketController::class, 'get'])->whereNumber('limit');
-Route::post("/add-tiket", [TiketController::class, 'save']);
-Route::patch("/reply-tiket", [TiketController::class, 'reply']);
-Route::patch("/closed-tiket", [TiketController::class, 'closed']);
-Route::delete("/delete-tiket", [TiketController::class, 'delete']);
+Route::get("/ticket/{limit?}", [TicketController::class, 'get'])->whereNumber('limit');
+Route::post("/add-ticket", [TicketController::class, 'save']);
+Route::patch("/reply-ticket", [TicketController::class, 'reply']);
+Route::patch("/closed-ticket", [TicketController::class, 'closed']);
+Route::delete("/delete-ticket", [TicketController::class, 'delete']);

@@ -41,15 +41,16 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (NotFoundHttpException $e, $request) {
-            if ($request->is('api/*') && $request->expectsJson()) {
+            if ($request->is('api/*') && $request->header("content-type") == "application/json") {
                 return response()->json([
                     "code" => "404",
                     'status' => 'Record not found.'
                 ], 404);
             }
         });
+        
         $this->renderable(function (MethodNotAllowedHttpException $e, $request) {
-            if ($request->is('api/*')) {
+            if ($request->is('api/*') && $request->header("content-type") == "application/json") {
                 return response()->json([
                     "code" => "405",
                     'status' => 'Method not allowed.'

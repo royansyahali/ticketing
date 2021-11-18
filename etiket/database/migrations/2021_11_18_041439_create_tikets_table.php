@@ -13,9 +13,9 @@ class CreateTiketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tikets', function (Blueprint $table) {
+        Schema::create('tickets', function (Blueprint $table) {
             $table->uuid("id");
-            $table->string("tiket_number",15);
+            $table->string("ticket_number",15);
             $table->string("subject",50);
             $table->text("message");
             $table->enum('status', ['Open', 'Answered',"Closed"]);

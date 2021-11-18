@@ -16,9 +16,9 @@ To start application you can run command
 
 # 5 endpoint in this application
 ## 1. Route: 
-- "api/tiket/{limit}" with a limit parameter of type integer 
+- "api/ticket/{limit}" with a limit parameter of type integer 
 ### Description
-- Get data tiket 
+- Get tickets 
 ### Paramenter
 - limit = type integer
 ### Method 
@@ -28,11 +28,11 @@ To start application you can run command
 - X-API-KEY = R@h4s14
 
 ## 2. Route: 
-- "api/add-tiket" 
+- "api/add-ticket" 
 ### Description
-- Create a tiket 
+- Create a ticket 
 ### Method 
-- GET
+- POST
 ### Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
@@ -43,9 +43,9 @@ To start application you can run command
 
 
 ## 3. Route: 
-- "api/reply-tiket" 
+- "api/reply-ticket" 
 ### Description
-- Change a Status tiket to Answered
+- Change a Status ticket to Answered
 ### Method 
 - PATCH
 ### Header 
@@ -53,25 +53,25 @@ To start application you can run command
 - X-API-KEY = R@h4s14
 ### Request Body 
 - message = type string 
-- tiket_number = type string
+- ticket_number = type string
 
 ## 4. Route: 
-- "api/closed-tiket" 
+- "api/closed-ticket" 
 ### Description
-- Change a Status tiket to Closed
+- Change a Status ticket to Closed
 ### Method 
 - PATCH
 ### Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
 ### Request Body 
-- tiket_number = type string
+- ticket_number = type string
 
 
 ## 5. Route: 
-- "api/delete-tiket" 
+- "api/delete-ticket" 
 ### Description
-- Remove a tiket 
+- Remove a ticket 
 ### Method 
 - DELETE
 ### Header 
