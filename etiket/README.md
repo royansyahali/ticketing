@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Tiketing App
+## About Ticketing App
 Database 
 - Name = etiket
 
@@ -16,7 +16,7 @@ To start application you can run command
 
 # 5 endpoint in this application
 ## 1. Route: 
-- "api/tiket/{paramater}" with a parameter of type integer 
+- "api/tiket/{limit}" with a limit parameter of type integer 
 ### Description
 - Get data tiket 
 ### Paramenter
