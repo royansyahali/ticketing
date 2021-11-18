@@ -16,62 +16,62 @@ To start aplication you can run command
 
 I have four endpoint in this aplication
 1. "api/tiket/{limit}" with a parameter of type integer 
-Description
+# Description
 - Get data tiket 
-Paramenter
+# Paramenter
 - limit = type integer
-Method 
+# Method 
 - GET
-Header 
+# Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
 
 2. "api/add-tiket" 
-Description
+# Description
 - Create a tiket 
-Method 
+# Method 
 - GET
-Header 
+# Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
-Request Body 
+# Request Body 
 - subject = type string 
 - message = type string
 - priority = with value Low or High or Medium of type string
 
 3. "api/reply-tiket" 
-Description
+# Description
 - Change a Status tiket to Answered
-Method 
+# Method 
 - PATCH
-Header 
+# Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
-Request Body 
+# Request Body 
 - message = type string 
 - tiket_number = type string
 
 4. "api/closed-tiket" 
-Description
+# Description
 - Change a Status tiket to Closed
-Method 
+# Method 
 - PATCH
-Header 
+# Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
-Request Body 
+# Request Body 
 - tiket_number = type string
 
 
 6. "api/delete-tiket" 
-Description
+# Description
 - Remove a tiket 
-Method 
+# Method 
 - DELETE
-Header 
+# Header 
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
-Request Body 
+# Request Body 
 - id = type string
 
 ## License
