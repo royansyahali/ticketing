@@ -14,8 +14,8 @@ Database
 To start aplication you can run command
 - php artisan server with path in directory aplication
 
-# I have four endpoint in this aplication
-## Route: 
+# 5 endpoint in this aplication
+## 1. Route: 
 - "api/tiket/{limit}" with a parameter of type integer 
 ### Description
 - Get data tiket 
@@ -27,7 +27,7 @@ To start aplication you can run command
 - Content-Type = application/json
 - X-API-KEY = R@h4s14
 
-## Route: 
+## 2. Route: 
 - "api/add-tiket" 
 ### Description
 - Create a tiket 
@@ -42,7 +42,7 @@ To start aplication you can run command
 - priority = with value Low or High or Medium of type string
 
 
-## Route: 
+## 3. Route: 
 - "api/reply-tiket" 
 ### Description
 - Change a Status tiket to Answered
@@ -55,7 +55,7 @@ To start aplication you can run command
 - message = type string 
 - tiket_number = type string
 
-## Route: 
+## 4. Route: 
 - "api/closed-tiket" 
 ### Description
 - Change a Status tiket to Closed
@@ -68,7 +68,7 @@ To start aplication you can run command
 - tiket_number = type string
 
 
-## Route: 
+## 5. Route: 
 - "api/delete-tiket" 
 ### Description
 - Remove a tiket 
