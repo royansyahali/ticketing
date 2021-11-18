@@ -14,7 +14,7 @@ Database
 To start application you can run command
 - "php artisan server" with path in directory application
 
-# 5 endpoint in this application
+# 5 Endpoint in this application
 ## 1. Route: 
 - "api/ticket/{limit}" with a limit parameter of type integer 
 ### Description
