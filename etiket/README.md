@@ -11,12 +11,12 @@
 Database 
 - Name = etiket
 
-To start aplication you can run command
-- php artisan server with path in directory aplication
+To start application you can run command
+- "php artisan server" with path in directory application
 
-# 5 endpoint in this aplication
+# 5 endpoint in this application
 ## 1. Route: 
-- "api/tiket/{limit}" with a parameter of type integer 
+- "api/tiket/{paramater}" with a parameter of type integer 
 ### Description
 - Get data tiket 
 ### Paramenter
